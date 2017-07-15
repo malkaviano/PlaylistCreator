@@ -6,21 +6,15 @@ class PlaylistCreator
 
     raise "File already exists" if !override && File.exist?(filename)
 
-    musics = load_filenames(music_dir, file_format)
+    musics = load_filenames(music_dir, file_format)    
 
-    musics.shuffle! if shuffle
-
-    str = musics.join("\n")
-
-    IO.write(filename, str)
+    save_playlist(filename, musics, shuffle)
   end
 
   def self.shuffle_playlist(playlist)
     musics = IO.readlines(playlist).map(&:chomp)
 
-    musics.shuffle!
-
-    IO.write(playlist, musics.join("\n"))
+    save_playlist(playlist, musics, true)
   end
 
   def self.load_filenames(dir, file_format)
@@ -37,5 +31,11 @@ class PlaylistCreator
     a
   end
 
-  private_class_method :load_filenames
+  def self.save_playlist(filename, musics, shuffle)
+    musics.shuffle! if shuffle
+
+    IO.write(filename, musics.join("\n"))
+  end
+
+  private_class_method :load_filenames, :save_playlist
 end
