@@ -6,7 +6,7 @@ class PlaylistCreator
 
     raise "File already exists" if !override && File.exist?(filename)
 
-    musics = load_filenames(music_dir, file_format)    
+    musics = load_filenames(music_dir, file_format)
 
     save_playlist(filename, musics, shuffle)
   end
@@ -28,7 +28,7 @@ class PlaylistCreator
       end
     end
 
-    a
+    a.sort
   end
 
   def self.save_playlist(filename, musics, shuffle)
