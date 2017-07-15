@@ -1,14 +1,17 @@
-This script was created to my personal use, intended to produce simple playlists from my computer media collections.
+# PlaylistCreator
+
+#### This script was created to my personal use, intended to produce simple playlists from my computer media folders.
 
 I created it so I can watch my stuff with MPV. It may have other uses... O.o
 
-How to use:
+### How to use:
 Edit runner.rb, change the settings to your preferences then run runner.rb with ruby command.
 
-media_dir = media folder (collections folder)
-media_format = the format of the file to be inserted into the playlist
-shuffle: write the playlist shuffled.
-override: recreate the playlist file if it already exists.
+### Settings
+* media_dir = media folder (collections folder)
+* media_format = the format of the file to be inserted into the playlist
+* shuffle: write the playlist shuffled.
+* override: recreate the playlist file if it already exists.
 
 Resulting file has the same of the folder with m3u extension.
 
