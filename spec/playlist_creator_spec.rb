@@ -7,46 +7,48 @@ describe PlaylistCreator do
 
   after { File.delete filename if File.exists? dir + "myplaylist.m3u" }
 
-  context "When a file already exists with the same name" do
-    let(:filename) { dir + "dummy.m3u" }
+  describe "::generate_playlist_for" do
+    context "When a file already exists with the same name" do
+      let(:filename) { dir + "dummy.m3u" }
 
-    it "raises an error" do
-      expect { PlaylistCreator.generate_playlist_for(filename, music_dir) }.to raise_error RuntimeError, "File already exists"
+      it "raises an error" do
+        expect { PlaylistCreator.generate_playlist_for(filename, music_dir) }.to raise_error RuntimeError, "File already exists"
+      end
     end
-  end
 
-  context "When the filename is not specified" do
-    let(:filename) { "" }
+    context "When the filename is not specified" do
+      let(:filename) { "" }
 
-    it "raises an error" do
-      expect { PlaylistCreator.generate_playlist_for(filename, music_dir) }.to raise_error RuntimeError, "File name is required"
+      it "raises an error" do
+        expect { PlaylistCreator.generate_playlist_for(filename, music_dir) }.to raise_error RuntimeError, "File name is required"
+      end
     end
-  end
 
-  context "When the music_dir is not specified" do
-    let(:music_dir) { nil }
+    context "When the music_dir is not specified" do
+      let(:music_dir) { nil }
 
-    it "raises an error" do
-      expect { PlaylistCreator.generate_playlist_for(filename, music_dir) }.to raise_error RuntimeError, "Music dir is required"
+      it "raises an error" do
+        expect { PlaylistCreator.generate_playlist_for(filename, music_dir) }.to raise_error RuntimeError, "Music dir is required"
+      end
     end
-  end
 
-  it "creates the file" do
-    PlaylistCreator.generate_playlist_for(filename, music_dir)
+    it "creates the file" do
+      PlaylistCreator.generate_playlist_for(filename, music_dir)
 
-    expect(File.exists? filename).to be true
+      expect(File.exists? filename).to be true
 
-    a = File.readlines filename
+      a = File.readlines filename
 
-    music_dir = dir + "musics/"
+      music_dir = dir + "musics/"
 
-    expect(a.map(&:chomp)).to match_array [
-      music_dir + "music1.mp3",
-      music_dir + "1/1-music1.mp3",
-      music_dir + "2/2-music1.mp3",
-      music_dir + "2/2_1/2_1-music1.mp3",
-      music_dir + "2/2_1/2_1-music2.mp3"
-    ]
+      expect(a.map(&:chomp)).to match_array [
+        music_dir + "music1.mp3",
+        music_dir + "1/1-music1.mp3",
+        music_dir + "2/2-music1.mp3",
+        music_dir + "2/2_1/2_1-music1.mp3",
+        music_dir + "2/2_1/2_1-music2.mp3"
+      ]
+    end
   end
 
 end

@@ -10,9 +10,17 @@ class PlaylistCreator
 
     musics.shuffle! if shuffle
 
-    str = musics.reduce("") { |s, m| s += m + "\n" }
+    str = musics.join("\n")
 
-    File.write(filename, str)
+    IO.write(filename, str)
+  end
+
+  def self.shuffle_playlist(playlist)
+    musics = IO.readlines(playlist).map(&:chomp)
+
+    musics.shuffle!
+
+    IO.write(playlist, musics.join("\n"))
   end
 
   def self.load_filenames(dir, file_format)
