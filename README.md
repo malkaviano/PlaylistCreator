@@ -1,4 +1,4 @@
-# PlaylistCreator
+# PlaylistCreator [![Build Status](https://travis-ci.org/malkaviano/PlaylistCreator.svg?branch=master)](https://travis-ci.org/malkaviano/PlaylistCreator)
 
 #### This script was created to my personal use, intended to produce simple playlists from my computer media folders.
 
