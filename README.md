@@ -18,3 +18,5 @@ Resulting file has the same of the folder with m3u extension.
 The script will create playlist for everyfolder inside your media folder. If a folder does not have any media of the desired format an empty m3u will be created (Working as Intended).
 
 TODO: Accept more than one file format.
+
+Fix some BUGs, maybe...
